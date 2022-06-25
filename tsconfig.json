@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noImplicitReturns": true,
+    "noImplicitUseStrict": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false,
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": true,
+    "noImplicitAny": true,
+    "strict": true,
+    "target": "es6",
+    "outDir": "./build"
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": ["src"]
+}
