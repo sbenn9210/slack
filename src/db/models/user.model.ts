@@ -1,4 +1,5 @@
 import { Model } from 'objection';
+import Message from './message.model'
 
 export default class User extends Model {
     id!: string
@@ -6,7 +7,7 @@ export default class User extends Model {
     username!: string
     email!: string
     password!: string
-
+    
     static tableName = 'user'
 
     static jsonSchema = {
@@ -20,4 +21,15 @@ export default class User extends Model {
             password: {type: 'string', minLength: 1, maxLength: 255},
         },
     }
+
+    static relationMappings = () => ({
+        channel : {
+            relation: Model.HasManyRelation,
+            modelClass: Message,
+            join: {
+                from: 'user.id',
+                to: 'message.userId.'
+            }
+        }
+    })
 }
