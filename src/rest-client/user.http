@@ -1,17 +1,27 @@
 @id=0c996d8c-a4c5-425e-b807-57cd1a7efdb1
 
 ###
-POST http://localhost:8080/users
+POST http://localhost:8082/user
 Content-Type: application/json
 
 {
-    "name": "test",
-    "username": "testing",
-    "email": "testing@test.com",
+    "name": "Ryan",
+    "username": "ryan123",
+    "email": "ryan@test.com",
     "password": "string"
 }
 ###
 ###
-GET http://localhost:8080/users/{{id}}
+GET http://localhost:8082/user
+Content-Type: application/json
+###
+
+###
+GET http://localhost:8082/user/{{id}}
+Content-Type: application/json
+###
+
+###
+GET http://localhost:8082/
 Content-Type: application/json
 ###
