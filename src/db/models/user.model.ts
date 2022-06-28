@@ -1,5 +1,5 @@
 import { Model } from 'objection';
-import Message from './message.model'
+import Message from './message.model';
 
 export default class User extends Model {
     id!: string
@@ -23,12 +23,12 @@ export default class User extends Model {
     }
 
     static relationMappings = () => ({
-        channel : {
+        message : {
             relation: Model.HasManyRelation,
             modelClass: Message,
             join: {
                 from: 'user.id',
-                to: 'message.userId.'
+                to: 'message.userId'
             }
         }
     })

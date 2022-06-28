@@ -1,3 +1,5 @@
+@id=0c996d8c-a4c5-425e-b807-57cd1a7efdb1
+
 ###
 POST http://localhost:8080/users
 Content-Type: application/json
@@ -10,6 +12,6 @@ Content-Type: application/json
 }
 ###
 ###
-GET http://localhost:8080/
+GET http://localhost:8080/users/{{id}}
 Content-Type: application/json
 ###
