@@ -5,9 +5,9 @@ POST http://localhost:8082/user
 Content-Type: application/json
 
 {
-    "name": "Ryan",
-    "username": "ryan123",
-    "email": "ryan@test.com",
+    "name": "Brittany",
+    "username": "brittany123",
+    "email": "britt@test.com",
     "password": "string"
 }
 ###

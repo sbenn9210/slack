@@ -1,29 +1,25 @@
 import { Request, Response, Router } from "express";
 import User from "../db/models/user.model";
+import { UserRepository } from "../repositories/user.repository";
 import { asyncHandler } from "./utils";
 
+const userRepository = new UserRepository();
 
 export const create = async (req: Request, res: Response) => {
     const user: any = req.body
-    const {name, username, email, password} = user;
-    const newUser = await User.query().insert({
-       name,
-       username,
-       email,
-       password
-    })
+    const newUser = await userRepository.create(user)
 
     res.send(newUser)
 }
 
 export const findAll = async (req: Request, res: Response) => {
-    const users = await User.query().withGraphFetched('message')
+        const users = await userRepository.findAll()
         res.send(users)
 }
 
 export const findOne =async (req:Request, res: Response) => {
      const { id } = req.params;
-        const user = await User.query().findById(id).withGraphFetched('message')
+        const user = await userRepository.findOne(id)
         res.send(user)
 }
 
