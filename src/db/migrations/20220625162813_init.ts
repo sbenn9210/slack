@@ -25,7 +25,7 @@ export async function up(knex: Knex): Promise<void> {
         .createTable('message', (table) => {
             table.uuid('id').primary().defaultTo(knex.raw('gen_random_uuid()'));
             table.text('content');
-            table.uuid('user_id').notNullable();
+            table.uuid('user_id').notNullable().references('id').inTable('user')
             table.uuid('channel_id').notNullable();
             table.timestamps(true, true);
         })
