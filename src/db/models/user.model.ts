@@ -1,35 +1,35 @@
-import { Model } from 'objection';
-import Message from './message.model';
+import { Model } from "objection";
+import Message from "./message.model";
 
 export default class User extends Model {
-    id!: string
-    name!: string
-    username!: string
-    email!: string
-    password!: string
-    
-    static tableName = 'user'
+  id!: string;
+  name!: string;
+  username!: string;
+  email!: string;
+  password!: string;
 
-    static jsonSchema = {
-        type: 'object',
-        required: ['name', 'username', 'email', 'password'],
-        properties: {
-            id: {type: 'string'},
-            name: {type: 'string', minLength: 1, maxLength: 255},
-            username: {type: 'string', minLength: 1, maxLength: 255},
-            email: {type: 'string', minLength: 1, maxLength: 255},
-            password: {type: 'string', minLength: 1, maxLength: 255},
-        },
-    }
+  static tableName = "user";
 
-    static relationMappings = () => ({
-        message : {
-            relation: Model.HasManyRelation,
-            modelClass: Message,
-            join: {
-                from: 'user.id',
-                to: 'message.userId'
-            }
-        }
-    })
+  static jsonSchema = {
+    type: "object",
+    required: ["name", "username", "email", "password"],
+    properties: {
+      id: { type: "string" },
+      name: { type: "string", minLength: 1, maxLength: 255 },
+      username: { type: "string", minLength: 1, maxLength: 255 },
+      email: { type: "string", minLength: 1, maxLength: 255 },
+      password: { type: "string", minLength: 1, maxLength: 255 },
+    },
+  };
+
+  static relationMappings = () => ({
+    message: {
+      relation: Model.HasManyRelation,
+      modelClass: Message,
+      join: {
+        from: "user.id",
+        to: "message.userId",
+      },
+    },
+  });
 }
