@@ -1,6 +1,8 @@
+import * as dotenv from "dotenv";
 import type { Knex } from "knex";
 import { knexSnakeCaseMappers } from "objection";
-require("dotenv").config({ path: "../../.env" });
+
+dotenv.config();
 
 const config: { [key: string]: Knex.Config } = {
   development: {
@@ -18,6 +20,10 @@ const config: { [key: string]: Knex.Config } = {
     },
     migrations: {
       tableName: "knex_migrations",
+      directory: './src/db/migrations'
+    },
+    seeds: {
+      directory: './src/db/seeds'
     },
     ...knexSnakeCaseMappers(),
   },
