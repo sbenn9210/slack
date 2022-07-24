@@ -5,9 +5,9 @@ POST http://localhost:8082/user
 Content-Type: application/json
 
 {
-    "name": "Brittany",
-    "username": "brittany123",
-    "email": "britt@test.com",
+    "name": "Joel",
+    "username": "joel1223",
+    "email": "joel@test.com",
     "password": "string"
 }
 ###
@@ -21,7 +21,3 @@ GET http://localhost:8082/user/{{id}}
 Content-Type: application/json
 ###
 
-###
-GET http://localhost:8082/
-Content-Type: application/json
-###
