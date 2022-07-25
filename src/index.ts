@@ -1,18 +1,22 @@
 // https://dev.to/tylerlwsmith/using-a-typescript-interface-to-define-model-properties-in-objection-js-1231
-import express, { Express } from 'express'
-import setupDb from './db/db-setup'
-import bodyParser from 'body-parser';
-import { userRouter } from './controllers/user.controller';
+import setupDb from "./db/db-setup";
+import bodyParser from "body-parser";
+import "reflect-metadata";
+import { InversifyExpressServer } from "inversify-express-utils";
+import { container } from "./inversify/inversify.config";
 
-setupDb()
+const PORT = process.env.PORT;
 
-const app: Express = express()
+setupDb();
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true}))
+const server = new InversifyExpressServer(container, null, { rootPath: "/" });
 
-app.use('/user', userRouter);
+server.setConfig((app) => {
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
+});
 
-app.listen(8082, () => {
-    console.log('Server is running at localhost:8082')
-})
+export const builtServer = server.build();
+export const expressServer = builtServer.listen(PORT, () =>
+  console.log(`Server is running at localhost:${PORT}`)
+);

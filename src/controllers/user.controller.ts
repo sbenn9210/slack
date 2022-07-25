@@ -1,29 +1,45 @@
-import { Request, Response, Router } from "express";
-import User from "../db/models/user.model";
-import { UserRepository } from "../repositories/user.repository";
-import { asyncHandler } from "./utils";
+import { Request, Response } from "express";
+import { inject } from "inversify";
+import {
+  BaseHttpController,
+  controller,
+  httpGet,
+  httpPost,
+  interfaces,
+} from "inversify-express-utils";
+import { SERVICE_KEYS } from "../inversify/keys.constants";
+import { IUserRepository } from "../repositories/interfaces/IUserRepository";
 
-const userRepository = new UserRepository();
+@controller("/user")
+export class UserController
+  extends BaseHttpController
+  implements interfaces.Controller
+{
+  public constructor(
+    @inject(SERVICE_KEYS.USER_REPOSITORY)
+    private readonly userRepository: IUserRepository
+  ) {
+    super();
+  }
 
-export const create = async (req: Request, res: Response) => {
-    const user: any = req.body
-    const newUser = await userRepository.create(user)
+  @httpPost("/")
+  async create(req: Request, res: Response) {
+    const user: any = req.body;
+    const newUser = await this.userRepository.create(user);
 
-    res.send(newUser)
+    res.send(newUser);
+  }
+
+  @httpGet("/")
+  async findAll(req: Request, res: Response) {
+    const users = await this.userRepository.findAll();
+    res.send(users);
+  }
+
+  @httpGet("/:id")
+  async findOne(req: Request, res: Response) {
+    const { id } = req.params;
+    const user = await this.userRepository.findOne(id);
+    res.send(user);
+  }
 }
-
-export const findAll = async (req: Request, res: Response) => {
-        const users = await userRepository.findAll()
-        res.send(users)
-}
-
-export const findOne =async (req:Request, res: Response) => {
-     const { id } = req.params;
-        const user = await userRepository.findOne(id)
-        res.send(user)
-}
-
-export const userRouter = Router()
-    .get('/', asyncHandler(findAll))
-    .get('/:id', asyncHandler(findOne))
-    .post('/', asyncHandler(create));
