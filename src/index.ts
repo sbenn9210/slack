@@ -1,10 +1,11 @@
 // https://dev.to/tylerlwsmith/using-a-typescript-interface-to-define-model-properties-in-objection-js-1231
 import setupDb from "./db/db-setup";
 import bodyParser from "body-parser";
-// import { userRouter } from "./controllers/user.controller";
 import "reflect-metadata";
 import { InversifyExpressServer } from "inversify-express-utils";
 import { container } from "./inversify/inversify.config";
+
+const PORT = process.env.PORT;
 
 setupDb();
 
@@ -16,6 +17,6 @@ server.setConfig((app) => {
 });
 
 export const builtServer = server.build();
-export const expressServer = builtServer.listen(8082, () =>
-  console.log("Server is running at localhost:8082")
+export const expressServer = builtServer.listen(PORT, () =>
+  console.log(`Server is running at localhost:${PORT}`)
 );
