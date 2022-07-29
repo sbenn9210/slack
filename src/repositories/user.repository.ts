@@ -1,7 +1,4 @@
-import { injectable } from "inversify";
 import User from "../db/models/user.model";
-import { UserInput, UserOutput } from "../types/user.types";
-import { IUserRepository } from "./interfaces/IUserRepository";
 
 export async function create(user: any) {
   const { name, username, email, password } = user;

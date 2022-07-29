@@ -1,4 +1,0 @@
-export const SERVICE_KEYS = {
-  USER_REPOSITORY: Symbol.for("USER_REPOSITORY"),
-  MESSAGE_REPOSITORY: Symbol.for("MESSAGE_REPOSITORY"),
-};
