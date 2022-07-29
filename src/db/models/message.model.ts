@@ -14,7 +14,7 @@ export default class Message extends Model {
     required: ["content", "userId", "channelId"],
     properties: {
       id: { type: "string" },
-      content: { type: "text" },
+      content: { type: "string" },
       userId: { type: "string" },
       channelId: { type: "string" },
     },

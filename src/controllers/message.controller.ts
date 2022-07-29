@@ -1,39 +1,19 @@
-import { inject } from "inversify";
-import {
-  BaseHttpController,
-  controller,
-  httpGet,
-  httpPost,
-  interfaces,
-} from "inversify-express-utils";
-import { SERVICE_KEYS } from "../inversify/keys.constants";
-import { IMessageRepository } from "../repositories/interfaces/IMessageRepository";
-import { Request, Response } from "express";
+import { Request, Response, Router } from "express";
+import { create, findAll } from "../repositories/message.repository";
+import { asyncHandler } from "./utils";
 
-@controller("/message")
-export class MessageController
-  extends BaseHttpController
-  implements interfaces.Controller
-{
-  public constructor(
-    @inject(SERVICE_KEYS.MESSAGE_REPOSITORY)
-    private readonly messageRepository: IMessageRepository
-  ) {
-    super();
-  }
+export const createMessage = async (req: Request, res: Response) => {
+  const message: any = req.body;
+  const newMessage = await create(message);
 
-  @httpPost("/")
-  async create(req: Request, res: Response) {
-    const message: any = req.body;
-    console.log(message);
-    const newMessage = await this.messageRepository.create(message);
+  res.send(newMessage);
+};
 
-    res.send(newMessage);
-  }
+export const findAllMessages = async (req: Request, res: Response) => {
+  const messages = await findAll();
+  res.send(messages);
+};
 
-  @httpGet("/")
-  async findAll(req: Request, res: Response) {
-    const messages = await this.messageRepository.findAll();
-    res.send(messages);
-  }
-}
+export const messageRouter = Router()
+  .post("/", asyncHandler(createMessage))
+  .get("/", asyncHandler(findAllMessages));
