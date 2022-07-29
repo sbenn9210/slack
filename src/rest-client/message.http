@@ -1,0 +1,14 @@
+###
+POST http://localhost:8082/message
+Content-Type: application/json
+
+{
+    "content": "this is a test",
+    "userId": "36bb3b72-6e15-4164-a5fc-75a6e1d61849",
+    "channelId": "83ed9550-85be-42f9-b7be-dcfd0f55b4d5"
+}
+###
+###
+GET http://localhost:8082/localhost:8082/message
+Content-Type: application/json
+###
