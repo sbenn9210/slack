@@ -1,4 +1,5 @@
 import { Model } from "objection";
+import Member from "./member.model";
 import Message from "./message.model";
 
 export default class User extends Model {
@@ -29,6 +30,14 @@ export default class User extends Model {
       join: {
         from: "user.id",
         to: "message.userId",
+      },
+    },
+    member: {
+      relation: Model.HasManyRelation,
+      modelClass: Member,
+      join: {
+        from: "user.id",
+        to: "member.userId",
       },
     },
   });
