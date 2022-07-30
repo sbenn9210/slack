@@ -1,0 +1,10 @@
+###
+POST http://localhost:8082/channel
+Content-Type: application/json
+
+{
+    "name": "General",
+    "teamId": "ee1d8f9f-0e8a-445c-8376-47f6c4834ad7",
+    "publicChannel": true
+}
+###

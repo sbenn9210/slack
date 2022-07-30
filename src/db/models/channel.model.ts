@@ -17,7 +17,7 @@ export default class Channel extends Model {
       id: { type: "string" },
       name: { type: "string", minLength: 1, maxLength: 255 },
       teamId: { type: "string" },
-      public: { type: "string" },
+      public: { type: "boolean" },
     },
   };
 

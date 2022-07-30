@@ -4,6 +4,7 @@ import setupDb from "./db/db-setup";
 import bodyParser from "body-parser";
 import { userRouter } from "./controllers/user.controller";
 import { messageRouter } from "./controllers/message.controller";
+import { channelRouter } from "./controllers/channel.controller";
 
 setupDb();
 
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/user", userRouter);
 app.use("/message", messageRouter);
+app.use("/channel", channelRouter);
 
 app.listen(8082, () => {
   console.log("Server is running at localhost:8082");
