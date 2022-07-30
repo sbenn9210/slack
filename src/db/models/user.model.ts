@@ -1,6 +1,7 @@
 import { Model } from "objection";
 import Member from "./member.model";
 import Message from "./message.model";
+import Team from "./team.model";
 
 export default class User extends Model {
   id!: string;
@@ -38,6 +39,14 @@ export default class User extends Model {
       join: {
         from: "user.id",
         to: "member.userId",
+      },
+    },
+    team: {
+      relation: Model.HasOneRelation,
+      modelClass: Team,
+      join: {
+        from: "user.id",
+        to: "team.ownerId",
       },
     },
   });

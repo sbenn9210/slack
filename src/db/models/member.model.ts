@@ -1,4 +1,5 @@
 import { Model } from "objection";
+import Team from "./team.model";
 import User from "./user.model";
 
 export default class Member extends Model {
@@ -25,6 +26,14 @@ export default class Member extends Model {
       join: {
         from: "member.userId",
         to: "user.id",
+      },
+    },
+    team: {
+      relation: Model.BelongsToOneRelation,
+      modelClass: Team,
+      join: {
+        from: "member.teamId",
+        to: "team.id",
       },
     },
   });

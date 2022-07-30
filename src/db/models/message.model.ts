@@ -1,4 +1,5 @@
 import { Model } from "objection";
+import Channel from "./channel.model";
 import User from "./user.model";
 
 export default class Message extends Model {
@@ -27,6 +28,14 @@ export default class Message extends Model {
       join: {
         from: "message.userId",
         to: "user.id",
+      },
+    },
+    channel: {
+      relation: Model.BelongsToOneRelation,
+      modelClass: Channel,
+      join: {
+        from: "message.channelId",
+        to: "channel.id",
       },
     },
   });
