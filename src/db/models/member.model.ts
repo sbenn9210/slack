@@ -1,23 +1,21 @@
 import { Model } from "objection";
-import Channel from "./channel.model";
+import Team from "./team.model";
 import User from "./user.model";
 
-export default class Message extends Model {
+export default class Member extends Model {
   id!: string;
-  content!: Text;
+  teamId!: string;
   userId!: string;
-  channelId!: string;
 
-  static tableName = "message";
+  static tableName: "member";
 
   static jsonSchema = {
     type: "object",
-    required: ["content", "userId", "channelId"],
+    required: ["teamId", "userId"],
     properties: {
       id: { type: "string" },
-      content: { type: "string" },
+      teamId: { type: "string" },
       userId: { type: "string" },
-      channelId: { type: "string" },
     },
   };
 
@@ -26,16 +24,16 @@ export default class Message extends Model {
       relation: Model.BelongsToOneRelation,
       modelClass: User,
       join: {
-        from: "message.userId",
+        from: "member.userId",
         to: "user.id",
       },
     },
-    channel: {
+    team: {
       relation: Model.BelongsToOneRelation,
-      modelClass: Channel,
+      modelClass: Team,
       join: {
-        from: "message.channelId",
-        to: "channel.id",
+        from: "member.teamId",
+        to: "team.id",
       },
     },
   });
