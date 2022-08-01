@@ -3,8 +3,8 @@ POST http://localhost:8082/message
 Content-Type: application/json
 
 {
-    "content": "n objection, all configuration is done through Model classes and there is no global configuration or state. There is no. This allows you to create isolated components and for example to use multiple different databases with different configurations in one app. Most of the time you want the same configuration for all models and a good pattern is to create a BaseModel class and inherit all your models from that. You can then add all shared configuration to BaseModel. See the static properties in API Reference / Model section for all available configuration options. n objection, all configuration is done through Model classes and there is no global configuration or state. There is no This allows you to create isolated components and for example to use multiple different databases with different configurations in one app. Most of the time you want the same configuration for all models and a good pattern is to create a BaseModel class and inherit all your models from that. You can then add all shared configuration to BaseModel. See the static properties in API Reference / Model section for all available configuration options.",
-    "userId": "0c996d8c-a4c5-425e-b807-57cd1a7efdb1",
+    "content": "TEST TEST TEST objection, all configuration is done through Model classes and there is no global configuration or state. There is no. This allows you to create isolated components and for example to use multiple different databases with different configurations in one app. Most of the time you want the same configuration for all models and a good pattern is to create a BaseModel class and inherit all your models from that. You can then add all shared configuration to BaseModel. See the static properties in API Reference / Model section for all available configuration options. n objection, all configuration is done through Model classes and there is no global configuration or state. There is no This allows you to create isolated components and for example to use multiple different databases with different configurations in one app. Most of the time you want the same configuration for all models and a good pattern is to create a BaseModel class and inherit all your models from that. You can then add all shared configuration to BaseModel. See the static properties in API Reference / Model section for all available configuration options.",
+    "userId": "65b5166c-ec37-4415-8fe6-40eb5a0c9f6a",
     "channelId": "83ed9550-85be-42f9-b7be-dcfd0f55b4d5"
 }
 ###
@@ -12,5 +12,8 @@ Content-Type: application/json
 GET http://localhost:8082/message
 Content-Type: application/json
 ###
-
+###
+GET http://localhost:8082/message/65b5166c-ec37-4415-8fe6-40eb5a0c9f6a
+Content-Type: application/json
+###
 

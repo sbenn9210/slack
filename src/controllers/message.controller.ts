@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import { create, findAll } from "../repositories/message.repository";
+import { create, findAll, findMessagesByUser } from "../repositories/message.repository";
 import { asyncHandler } from "./utils";
 
 export const createMessage = async (req: Request, res: Response) => {
@@ -14,6 +14,13 @@ export const findAllMessages = async (req: Request, res: Response) => {
   res.send(messages);
 };
 
+export const getAllMessagesByUser = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const messages = await findMessagesByUser(id)
+  res.send(messages)
+}
+
 export const messageRouter = Router()
   .post("/", asyncHandler(createMessage))
-  .get("/", asyncHandler(findAllMessages));
+  .get("/", asyncHandler(findAllMessages))
+  .get('/:id', asyncHandler(getAllMessagesByUser));
