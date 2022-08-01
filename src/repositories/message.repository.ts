@@ -15,3 +15,7 @@ export async function create(message: any) {
 export async function findAll() {
   return await Message.query();
 }
+
+export async function findMessagesByUser(id: string) {
+  return await Message.query().where('userId', id);
+}
