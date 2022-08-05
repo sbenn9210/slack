@@ -1,9 +1,9 @@
 import knex from 'knex' 
-import knexfile from '../knexfile'  // knex init: creates this file 
+import knexfile from '../knexfile'
 import { Model } from 'objection'
 
 const db = knex(knexfile.development)  
-Model.knex(db)  //connecting objection to knex  
+Model.knex(db)
 
 let cached = global.pg
 if (!cached) cached = global.pg = {}    
