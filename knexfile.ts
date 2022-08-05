@@ -1,18 +1,19 @@
-import * as dotenv from "dotenv";
 import type { Knex } from "knex";
 import { knexSnakeCaseMappers } from "objection";
+import { loadEnvConfig } from '@next/env';
 
-dotenv.config();
+const dev = process.env.NODE_ENV !== 'production'
+const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT } = loadEnvConfig('./', dev).combinedEnv
 
 const config: { [key: string]: Knex.Config } = {
   development: {
-    client: "postgresql",
+    client: "pg",
     connection: {
-      host: process.env.DB_HOST,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      port: Number(process.env.DB_PORT),
+      host: DB_HOST,
+      user: DB_USER,
+      password: DB_PASSWORD,
+      database: DB_NAME,
+      port: Number(DB_PORT),
     },
     pool: {
       min: 2,
