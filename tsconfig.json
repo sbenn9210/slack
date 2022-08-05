@@ -23,5 +23,5 @@
     "outDir": "./build"
   },
   "exclude": ["node_modules"],
-  "include": ["src", "knexfile.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["knexfile.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", "db/migrations", "db/migrate.js", "db/seeds", "db/models", "db/index.js", "repositories", "types"]
 }
