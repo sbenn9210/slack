@@ -1,9 +1,8 @@
-import type { NextPage } from 'next'
+import type { NextPage } from "next";
+import Sidebar from "../components/Sidebar";
 
 const Home: NextPage = () => {
-  return (
-    <h1 className="text-3xl font-bold underline">Hello world</h1> 
-  )
-}
+  return <Sidebar />;
+};
 
-export default Home
+export default Home;
