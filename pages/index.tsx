@@ -1,8 +1,12 @@
 import type { NextPage } from "next";
-import Sidebar from "../components/Sidebar";
+import AppShell from "../components/AppShell";
 
 const Home: NextPage = () => {
-  return <Sidebar />;
+  return (
+    <>
+      <AppShell />
+    </>
+  );
 };
 
 export default Home;

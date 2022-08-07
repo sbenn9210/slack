@@ -31,7 +31,7 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Sidebar() {
+export default function AppShell() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -73,7 +73,7 @@ export default function Sidebar() {
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <Dialog.Panel className="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-indigo-700">
+                <Dialog.Panel className="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-gray-800">
                   <Transition.Child
                     as={Fragment}
                     enter="ease-in-out duration-300"
@@ -100,7 +100,7 @@ export default function Sidebar() {
                   <div className="flex-shrink-0 flex items-center px-4">
                     <img
                       className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/workflow-logo-indigo-300-mark-white-text.svg"
+                      src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
                       alt="Workflow"
                     />
                   </div>
@@ -112,13 +112,18 @@ export default function Sidebar() {
                           href={item.href}
                           className={classNames(
                             item.current
-                              ? "bg-indigo-800 text-white"
-                              : "text-indigo-100 hover:bg-indigo-600",
+                              ? "bg-gray-900 text-white"
+                              : "text-gray-300 hover:bg-gray-700 hover:text-white",
                             "group flex items-center px-2 py-2 text-base font-medium rounded-md"
                           )}
                         >
                           <item.icon
-                            className="mr-4 flex-shrink-0 h-6 w-6 text-indigo-300"
+                            className={classNames(
+                              item.current
+                                ? "text-gray-300"
+                                : "text-gray-400 group-hover:text-gray-300",
+                              "mr-4 flex-shrink-0 h-6 w-6"
+                            )}
                             aria-hidden="true"
                           />
                           {item.name}
@@ -138,29 +143,34 @@ export default function Sidebar() {
         {/* Static sidebar for desktop */}
         <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex flex-col flex-grow pt-5 bg-indigo-700 overflow-y-auto">
-            <div className="flex items-center flex-shrink-0 px-4">
+          <div className="flex-1 flex flex-col min-h-0 bg-gray-800">
+            <div className="flex items-center h-16 flex-shrink-0 px-4 bg-gray-900">
               <img
                 className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-logo-indigo-300-mark-white-text.svg"
+                src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
                 alt="Workflow"
               />
             </div>
-            <div className="mt-5 flex-1 flex flex-col">
-              <nav className="flex-1 px-2 pb-4 space-y-1">
+            <div className="flex-1 flex flex-col overflow-y-auto">
+              <nav className="flex-1 px-2 py-4 space-y-1">
                 {navigation.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
                     className={classNames(
                       item.current
-                        ? "bg-indigo-800 text-white"
-                        : "text-indigo-100 hover:bg-indigo-600",
+                        ? "bg-gray-900 text-white"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
                       "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                     )}
                   >
                     <item.icon
-                      className="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300"
+                      className={classNames(
+                        item.current
+                          ? "text-gray-300"
+                          : "text-gray-400 group-hover:text-gray-300",
+                        "mr-3 flex-shrink-0 h-6 w-6"
+                      )}
                       aria-hidden="true"
                     />
                     {item.name}
@@ -170,7 +180,7 @@ export default function Sidebar() {
             </div>
           </div>
         </div>
-        <div className="md:pl-64 flex flex-col flex-1">
+        <div className="md:pl-64 flex flex-col">
           <div className="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white shadow">
             <button
               type="button"
@@ -253,7 +263,7 @@ export default function Sidebar() {
             </div>
           </div>
 
-          <main>
+          <main className="flex-1">
             <div className="py-6">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 <h1 className="text-2xl font-semibold text-gray-900">
