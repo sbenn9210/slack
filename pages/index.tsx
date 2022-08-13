@@ -1,12 +1,16 @@
-import type { NextPage } from "next";
-import AppShell from "../components/AppShell";
+import type { NextPage } from 'next'
+import Search from '../components/Search'
+import Sidebar from '../components/Sidebar'
 
 const Home: NextPage = () => {
   return (
-    <>
-      <AppShell />
-    </>
-  );
-};
+    <div className="flex flex-col bg-gray-100 overflow-y-auto">
+      <Search />
+      <Sidebar />
+  
+  </div>
 
-export default Home;
+  )
+}
+
+export default Home
