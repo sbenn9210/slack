@@ -1,9 +1,12 @@
 import type { Knex } from "knex";
 import { knexSnakeCaseMappers } from "objection";
-import { loadEnvConfig } from '@next/env';
+import { loadEnvConfig } from "@next/env";
 
-const dev = process.env.NODE_ENV !== 'production'
-const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT } = loadEnvConfig('./', dev).combinedEnv
+const dev = process.env.NODE_ENV !== "production";
+const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT } = loadEnvConfig(
+  "./",
+  dev
+).combinedEnv;
 
 const config: { [key: string]: Knex.Config } = {
   development: {
@@ -21,10 +24,10 @@ const config: { [key: string]: Knex.Config } = {
     },
     migrations: {
       tableName: "knex_migrations",
-      directory: './src/db/migrations'
+      directory: "./db/migrations",
     },
     seeds: {
-      directory: './src/db/seeds'
+      directory: "./db/seeds",
     },
     ...knexSnakeCaseMappers(),
   },
