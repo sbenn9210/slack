@@ -7,6 +7,8 @@ import {
   InboxIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const navigation = [
   { name: "Dashboard", icon: HomeIcon, href: "#", current: true },
@@ -21,7 +23,19 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function Sidebar() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get('/api/'); 
+      setData(response.data);
+    }
+
+    fetchData().catch(console.error)
+}, [])
+
+console.log(data)
   return (
     <div className="flex flex-col min-h-screen w-64">
       <div className="flex-1 flex flex-col min-h-0 bg-gray-800">
