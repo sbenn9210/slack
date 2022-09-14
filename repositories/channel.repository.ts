@@ -9,3 +9,7 @@ export const create = async (channel: any) => {
     public: publicChannel,
   });
 };
+
+export const findAll = async () => {
+ return await Channel.query();
+}
